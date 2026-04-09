@@ -33,7 +33,7 @@ with open("jobs.csv", mode="w", newline="", encoding="utf-8") as file:
 
         #write row to csv
         job_file.writerow([title, company, location, apply_link])
-
+#printing table on terminal to have a view of it
 job_final = pd.DataFrame(job_table)
 print(job_final)
 
