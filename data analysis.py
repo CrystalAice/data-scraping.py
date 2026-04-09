@@ -22,10 +22,12 @@ with open("jobs.csv", mode="w", newline="", encoding="utf-8") as file:
         location = job.find("p", class_="location").text.strip()
         apply_link = job.find("a", string="Apply")
 
-        jobs_list['Job title'] = title
-        jobs_list["Company"] = company
-        jobs_list['Location'] = location
-        jobs_list['Apply_Link'] = apply_link
+  jobs_list = {
+        'Job title' : title,
+        "Company" : company,
+        'Location' : location,
+        'Apply_Link' : apply_link["href"] if apply_link else "N/A"
+    }
 
         print(jobs_list)
 
