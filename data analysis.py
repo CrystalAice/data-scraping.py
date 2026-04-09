@@ -10,7 +10,7 @@ soup = BeautifulSoup(response.text, "html.parser")
 #finding all job cards
 job_cards = soup.find_all("div", class_="card-content")
 jobs_list = {}
-
+job_table = []
     #open csv file
 with open("jobs.csv", mode="w", newline="", encoding="utf-8") as file:
     job_file = csv.writer(file)
@@ -29,10 +29,13 @@ with open("jobs.csv", mode="w", newline="", encoding="utf-8") as file:
         'Apply_Link' : apply_link["href"] if apply_link else "N/A"
     }
 
-        print(jobs_list)
+        job_table.append(jobs_list)
 
         #write row to csv
         job_file.writerow([title, company, location, apply_link])
+
+job_final = pd.DataFrame(job_table)
+print(job_final)
 
 jobs_file = pd.read_csv('jobs.csv')
 jobs_file = jobs_file.dropna()
